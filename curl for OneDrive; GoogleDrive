@@ -1,0 +1,25 @@
+Google Chrome as well as Mozilla Firerfox both provide an option to copy download link specifically for cURL. This option will generate cURL with all required things such as User agent for downloading things from the side. To get that,
+
+    Open the URL in either of the browser.
+    Open Developer options using Ctrl+Shift+I.
+    Go to Network tab.
+    Now click on download. Saving file isn't required. We only need the network activity while browser requests the file from the server.
+    A new entry will appear which would look like "download.aspx?...".
+    Right click on that and Copy → Copy as cURL.
+    Paste the copied content directly in the terminal and append --output file.extension to save the content in file.extension since terminal isn't capable of showing binary data.
+
+
+An example of the command:
+curl 'https://company-my.sharepoint.com/personal/path/_layouts/15/download.aspx?SourceUrl=
+%2Fpersonal%2Fsome%5Fpath%5Fin%2Ffile' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux 
+x86_64; rv:73.0) Gecko/20100101 Firefox/73.0' -H 'Accept: text/html,application/xhtml+xml,
+application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' 
+--compressed -H 'DNT: 1' -H 'Connection: keep-alive' -H 'Referer: https://company-my
+.sharepoint.com/personal/path/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fagain%5Fa%5Fpath%2F
+file&parent=%2Fpersonal%2Fpath%5Fagain%5Fin%2&originalPath=somegibberishpath' -H 
+'Cookie: MicrosoftApplicationsTelemetryDeviceId=someid; 
+MicrosoftApplicationsTelemetryFirstLaunchTime=somevalue; 
+rtFa=rootFederationAuthenticationCookie; FedAuth=againACookie; CCSInfo=gibberishText; 
+FeatureOverrides_enableFeatures=; FeatureOverrides_disableFeatures=' -H 
+'Upgrade-Insecure-Requests: 1' -H 'If-None-Match: "{some value},2"' -H 'TE: Trailers' 
+--output file.extension
